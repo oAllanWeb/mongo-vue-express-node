@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const dbURI = "mongodb://" + process.env.M_USER + ":" + process.env.M_PASSWORD+"@ds151354.mlab.com:51354/"+process.env.M_DB
+const dbURI = "mongodb://" + process.env.M_USER + ":" + process.env.M_PASSWORD +"@ds151354.mlab.com:51354/"+process.env.M_DB
 console.log(dbURI)
 mongoose.Promise = global.Promise
 mongoose.connect(dbURI)
