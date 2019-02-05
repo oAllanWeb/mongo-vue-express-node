@@ -4,20 +4,93 @@ const Schema = mongoose.Schema;
 const MODEL_NAME = 'pessoas';
 
 const _schema = {
-  name: {
-    type: String,
-    required: true,
-    index: { unique: true }
-  },
-  email: {
-    type: String,
-    required: true,
-    index: { unique: true }
-  },
-  password: {
+  nome: {
     type: String,
     required: true
   },
+  apelido: {
+    type: String,
+    required: true
+  },
+  data_nascimeto: {
+    type: Date,
+    required: true
+  },
+  endereco: [
+    {
+      titulo: {
+        type: String,
+        required: true
+      },
+      cep: {
+        type: String,
+        required: true
+      },
+      logradouro: {
+        type: String,
+        required: true
+      },
+      complemento: {
+        type: String,
+        required: true
+      },
+      bairro: {
+        type: String,
+        required: true
+      },
+      localidade: {
+        type: String,
+        required: true
+      },
+      uf: {
+        type: String,
+        required: true
+      },
+      unidade: {
+        type: String,
+        required: true
+      },
+      ibge: {
+        type: Number,
+        required: true
+      },
+      gia: {
+        type: Number,
+        required: true
+      }
+    }
+  ],
+  contato: [
+    {
+      tipo: {
+        type: String,
+        enum: [
+          "Telefone",
+          "E-mail",
+          "Site",
+          "Facebook",
+          "Instagram",
+          "Whatsapp"
+        ]
+      },
+      informacao: {
+        type: Number,
+        required: true
+      }
+    }
+  ],
+  documento: [
+    {
+      tipo: {
+        type: String,
+        enum: ["CPF", "RG", "CNPJ", "IE", "SUFRAMA"]
+      },
+      informacao: {
+        type: String,
+        required: true
+      }
+    }
+  ],
   crateAt: {
     type: Date,
     default: Date.now
@@ -30,10 +103,10 @@ const _schema = {
     type: [
       {
         type: String,
-        enum: ["user", "admin", "staff"]
+        enum: ["Administrador", "Cliente", "Funcionário", "Fornecedor"]
       }
     ],
-    default: ["user"]
+    default: ["Cliente"]
   },
   status: {
     type: [
@@ -42,7 +115,7 @@ const _schema = {
         enum: ["ativo", "inativo", "aguardando", "deletado"]
       }
     ],
-    default: ["aguardando"]
+    default: ["ativo"]
   }
 };
 

@@ -17,7 +17,7 @@ router.get('/:id', auth.authorize, (req, res, next) =>
     Controller.findOne(req, res)
 );
 
-router.post('/', (req, res, next) =>{
+router.post('/', auth.authorize, (req, res, next) =>{
     req.body.password = md5(req.body.password);
     Controller.create(req, res, {})
 }
